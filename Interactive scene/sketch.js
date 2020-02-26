@@ -23,7 +23,6 @@ function drawRect() {
   noStroke();
   fill("red");
   rect(mouseX-10, mouseY-10, scalar*100, scalar*100,);
-  if (keyPressed())
 }
 
 function mouseWheel(event) {
