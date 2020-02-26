@@ -6,10 +6,13 @@
 // - describe what you did to take this project "above and beyond"
 
 let scalar = 1.0;
+let angle = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  angleMode(DEGREES)
 }
+
 
 function draw() {
   background(220);
@@ -17,8 +20,10 @@ function draw() {
 }
 
 function drawRect() {
+  noStroke();
   fill("red");
   rect(mouseX-10, mouseY-10, scalar*100, scalar*100,);
+  if (keyPressed())
 }
 
 function mouseWheel(event) {
