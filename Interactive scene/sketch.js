@@ -7,10 +7,12 @@
 
 let scalar = 1.0;
 let angle = 0;
-
+let bgColor = 0;
+let rectColor = 0;
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  angleMode(DEGREES)
+  bgColor = random(255);
+  rectColor = random(255);
 }
 
 
@@ -21,9 +23,14 @@ function draw() {
 
 function drawRect() {
   noStroke();
-  fill("red");
-  rect(mouseX-10, mouseY-10, scalar*100, scalar*100,);
+  fill(rectColor);
+  rect(mouseX, mouseY, scalar*100, scalar*100,);
+  if (keyIsPressed) {
+    rectColor = color(random(255), random(255), random(255));
+  }
 }
+
+function keyPressed()
 
 function mouseWheel(event) {
   if (event.delta < 0) {
@@ -32,5 +39,5 @@ function mouseWheel(event) {
   }
   else {
     scalar *= 0.9;
-  }
+ }
 }
