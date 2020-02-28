@@ -26,7 +26,7 @@ function draw() {
 
 function drawRect() {
   noStroke();
-  rot += 0.05;
+  rot += 0.02;
   translate(mouseX, mouseY);
   rotate(rot);
   fill(rectColor);
