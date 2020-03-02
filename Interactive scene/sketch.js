@@ -10,7 +10,7 @@ let angle = 0;
 let bgColor = 0;
 let rectColor = 0;
 let rot = 0;
-rotspeedup = 1;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   bgColor = random(255);
@@ -30,12 +30,15 @@ function drawRect() {
   translate(mouseX, mouseY);
   rotate(rot);
   fill(rectColor);
-  rect(0, 0, scalar*100, scalar*100,);
+  rect(0, 0, scalar*100, scalar*100);
   
  
-  if (keyIsPressed && key != "spacebar") {
+  if (keyIsPressed && key !== "w") {
     rectColor = color(random(255), random(255), random(255));
     bgColor = color(random(255), random(255), random(255));
+  }
+  if (keyIsPressed && key === "w") {
+    rot ++;
   }
 }
 
