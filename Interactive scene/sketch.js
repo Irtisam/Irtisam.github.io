@@ -10,6 +10,8 @@ let angle = 0;
 let bgColor = 0;
 let rectColor = 0;
 let rot = 0;
+let changeColor = false;
+let rotSpeedUp = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -24,6 +26,24 @@ function draw() {
   drawRect()
 }
 
+function keyPressed() {
+  if (key === "w") {
+    changeColor = true;
+  }
+  if (key === "d") {
+    rotSpeedUp = true;
+  }
+}
+
+function keyReleased() {
+  if (key === 'w') {
+    changeColor = false;
+  }
+  if (key === 'd') {
+    rotSpeedUp = false;
+  }
+}
+
 function drawRect() {
   noStroke();
   rot += 0.02;
@@ -33,12 +53,12 @@ function drawRect() {
   rect(0, 0, scalar*100, scalar*100);
   
  
-  if (keyIsPressed && key !== "w") {
+  if (changeColor) {
     rectColor = color(random(255), random(255), random(255));
     bgColor = color(random(255), random(255), random(255));
   }
-  if (keyIsPressed && key === "w") {
-    rot ++;
+  if (rotSpeedUp) {
+    rot = rot + 0.08;
   }
 }
 
