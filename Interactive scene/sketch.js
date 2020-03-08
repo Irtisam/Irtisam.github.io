@@ -8,7 +8,6 @@
 
 // variables used to control the properties of the square and background such as color, size and rotation speed. 
 let scalar = 1.0;
-let angle = 0;
 let bgColor = 0;
 let rectColor = 0;
 let rot = 0;
@@ -23,7 +22,7 @@ function setup() {
   bgColor = random(255);
   rectColor = random(255);
   
-  // Draws the rectangle from its center, rather than from a corner. 
+  // Draws the square from its center, rather than from a corner. 
   rectMode(CENTER);
 }
 
