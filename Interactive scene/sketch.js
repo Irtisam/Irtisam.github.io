@@ -1,8 +1,8 @@
-// Project Title
-// Your Name
-// Date
+// Colorful Rotating Square
+// Irtisam Islam
+// March 9th, 2020
 //
-// Extra for Experts:
+// Extra for Experts: Utilization of the mouse wheel
 // - describe what you did to take this project "above and beyond"
 
 let scalar = 1.0;
@@ -12,6 +12,7 @@ let rectColor = 0;
 let rot = 0;
 let changeColor = false;
 let rotSpeedUp = false;
+let rotSpeedDown = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -33,6 +34,9 @@ function keyPressed() {
   if (key === "d") {
     rotSpeedUp = true;
   }
+  if (key === "a") {
+    rotSpeedDown = true;
+  }
 }
 
 function keyReleased() {
@@ -42,11 +46,14 @@ function keyReleased() {
   if (key === 'd') {
     rotSpeedUp = false;
   }
+  if (key === "a") {
+    rotSpeedDown = false;
+  }
 }
 
 function drawRect() {
   noStroke();
-  rot += 0.02;
+  rot += 0.04;
   translate(mouseX, mouseY);
   rotate(rot);
   fill(rectColor);
@@ -58,7 +65,10 @@ function drawRect() {
     bgColor = color(random(255), random(255), random(255));
   }
   if (rotSpeedUp) {
-    rot = rot + 0.08;
+    rot += 0.1;
+  }
+  if (rotSpeedDown) {
+    rot -= 0.03;
   }
 }
 
