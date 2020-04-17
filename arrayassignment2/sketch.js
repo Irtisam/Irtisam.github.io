@@ -18,7 +18,7 @@ let empty = [];
 
 function setup() {
   createCanvas(800, 800);
-  frameRate(30);
+  frameRate(1);
   currentPlayer = floor(random(players.length));
   for (let j = 0; j < 3; j++) {
     for (let i = 0; i < 3; i++) {
@@ -85,6 +85,7 @@ function draw() {
 function drawBoard() {
   let w = width / 3;
   let h = height / 3;
+  strokeWeight(10);
   stroke(255)
   line(w, 0, w, height);
   line(w * 2, 0, w * 2, height);
