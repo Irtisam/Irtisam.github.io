@@ -11,20 +11,19 @@ let board = [
   ['', '', '']
 ];
 
-let players = ['X', 'O'];
+let cpu = 'X';
+let human = 'O';
 
-let currentPlayer;
-let empty = [];
+let currentPlayer = human;
+
+let w; //= width / 3;
+let h; //= height / 3;
+
 
 function setup() {
   createCanvas(800, 800);
-  frameRate(1);
-  currentPlayer = floor(random(players.length));
-  for (let j = 0; j < 3; j++) {
-    for (let i = 0; i < 3; i++) {
-      empty.push([i, j]);
-    }
-  }
+   w = width / 3;
+   h = height / 3;
 }
 
 function triple(a, b, c) {
@@ -58,21 +57,30 @@ function checkWin() {
     winner = board[2][0];
   }
 
-  if (winner == null && empty.length == 0) {
+  let openSpots = 0;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[i][j] === '') {
+        openSpots++;
+      }
+    }
+  }
+
+  if (winner == null && openSpots == 0) {
     return 'tie';
   } else {
     return winner;
   }
 }
 
-function isEmpty() {
-  let index = floor(random(empty.length));
-  let spot = empty.splice(index, 1)[0];
-  let i = spot[0];
-  let j = spot[1];
-  board[i][j] = players[currentPlayer];
-  currentPlayer = (currentPlayer + 1) % players.length;
-}
+// function isEmpty() {
+//   let index = floor(random(empty.length));
+//   let spot = empty.splice(index, 1)[0];
+//   let i = spot[0];
+//   let j = spot[1];
+//   board[i][j] = players[currentPlayer];
+//   currentPlayer = (currentPlayer + 1) % players.length;
+// }
 
 
 function draw() {
@@ -83,8 +91,6 @@ function draw() {
 }
 
 function drawBoard() {
-  let w = width / 3;
-  let h = height / 3;
   strokeWeight(10);
   stroke(255)
   line(w, 0, w, height);
@@ -94,8 +100,6 @@ function drawBoard() {
 }
 
 function symbols() {
-  let w = width / 3;
-  let h = height / 3;
   for (let j = 0; j < 3; j++) {
     for (let i = 0; i < 3; i++) {
       let x = w * i + w / 2;
@@ -103,11 +107,11 @@ function symbols() {
       let spot = board[i][j];
       textSize(64);
       strokeWeight(10);
-      if (spot === players[1]) {
+      if (spot === human) {
         stroke(255);
         noFill();
         ellipse(x, y, w / 2);
-      } else if (spot === players[0]) {
+      } else if (spot === cpu) {
         let xr = w / 4;
         line(x - xr, y - xr, x + xr, y + xr);
         line(x + xr, y - xr, x - xr, y + xr);
@@ -127,11 +131,31 @@ function results() {
     } else {
       resultP.html(`${result} wins!`);
     }
-  } else {
-    isEmpty();
   }
 }
 
-// function mousePressed() {
-  // isEmpty();
-// }
+function mousePressed() {
+  if (currentPlayer === human) {
+    // player's move
+    let i = floor(mouseX/w);
+    let j = floor(mouseY/h);
+    
+    // If move works
+    if (board[i][j] === '') {
+      board[i][j] = human;
+      currentPlayer = cpu;
+      // AI move
+      let empty = [];
+      for (let k = 0; k < 3; k++) {
+        for (let l = 0; l < 3; l++) {
+          if (board[k][l] === '') {
+            empty.push({k, l});
+          }
+        }
+      }
+      let move = random(empty);
+      board[move.k][move.l] = cpu;
+      currentPlayer = human;
+    }
+  }
+}
