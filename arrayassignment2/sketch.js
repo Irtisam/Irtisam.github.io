@@ -1,9 +1,11 @@
-// Project Title
-// Your Name
-// Date
+// Tic Tac Toe game with AI
+// Irtisam Islam
+// April 20, 2020
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// I incorporated the use of basic AI where the computer player chooses the best move based on the human player's
+// move. This is done by using the minimax algorithm
+
 
 let board = [
   ['', '', ''],
