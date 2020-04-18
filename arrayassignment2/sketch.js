@@ -28,7 +28,7 @@ function setup() {
   w = width / 3;
   h = height / 3;
 
-  cpuTurn();
+  // cpuTurn();
 }
 
 function triple(a, b, c) {
