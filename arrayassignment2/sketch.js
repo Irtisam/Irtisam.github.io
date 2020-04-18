@@ -7,7 +7,8 @@
 // move. This is done by using the minimax algorithm. This algorithm works like a flow chart and assigns values of -1, +1, or 0 to each action the player or CPU makes. The flow chart's 
 // depth starts from one value and then the CPU chooses the largest value that branches off from the inital value making it the maximizing player. the minimizing value is determined
 // by the player who will most likely make a move that is in favor of them. Each time a value is chosen by CPU or player, it branches off into multiple new outcomes and depending on 
-// who's turn it is, the maximizing or minizing value is chosen. 
+// who's turn it is, the maximizing or minizing value is chosen. The state variable that is used is the currentPlayer variable. Each time either player makes a move the state of 
+//  the currentPlayer variable either changes to human, or cpu. 
 
 // An array of arrays that designates a spot for each square on the board
 let board = [
@@ -19,6 +20,8 @@ let board = [
 // Assigns the symbols to the computer and human player and assigns the first player as the human
 let cpu = 'X';
 let human = 'O';
+
+// State variable to determine whose turn it is.
 let currentPlayer = human;
 
 // Variables to that are later defined when drawing the board and the symbols
